@@ -1,0 +1,23 @@
+*******************************************************
+	"Operation Foothold" static mission for Bornholm.
+	Created by [CiC]red_ned using templates by eraser1 
+	17 years of CiC http://cic-gaming.co.uk
+*******************************************************
+	For Bornholm only.
+	Running on DMS System
+	foothold_editor_file.sqf is raw editor file if you wish to change anything.
+*******************************************************
+
+Installing.
+1. 	Copy foothold.sqf into a3_dms.pbo missions/static
+2. 	Copy foothold_buildings.sqf into a3_dms.pbo objects/static
+3. 	Extract  map_configs/bornholm_config.sqf
+4.	Add to bottom (or use file provided)
+// Add the mission types.
+DMS_StaticMissionTypes append [["foothold",5]];
+
+// Add the map edits to spawn on server startup. NOTE: "append" and "pushback" are NOT the same.
+DMS_BasesToImportOnServerStart append ["foothold_buildings"];
+
+5.	Repack bornholm_config.sqf	into PBO
+6. 	Put a3_dms.pbo into /@ExileServer/addons/ on server and start.

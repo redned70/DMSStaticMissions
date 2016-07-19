@@ -1,0 +1,35 @@
+*******************************************************
+	"Lubjansk Harbour" static mission for Namalsk.
+	Created by [CiC]red_ned using templates by eraser1 
+	17 years of CiC http://cic-gaming.co.uk
+*******************************************************
+	For Namalsk only.
+	Running on DMS System
+*******************************************************
+
+1. 	Put lubjansk_mission.sqf into the missions/static folder of your a3_dms.pbo file
+
+2. 	EITHER (depending on how you want to arrange your static missions using either the map config or the main config files).
+		A. find these lines in main config.sqf file
+	DMS_StaticMissionTypes =			[							// List of STATIC missions with spawn chances.
+											//["saltflats",1],		//<--Example (already imported by default on Altis)
+											//["slums",1]			//<--Example (already imported by default on Altis)
+
+											//["sectorB",1]			//<--Example for Taviana
+										];
+and replace with (or add in the mission)										
+										
+	DMS_StaticMissionTypes =			[							// List of STATIC missions with spawn chances.										
+										["lubjansk_mission",5]
+										];	
+	OR
+		B. Copy the namalsk_config.sqf file included into /map_configs of your a3_dms.pbo file
+		
+	OR
+		C. Copy the following to the bottom of your own namalsk_config.sqf
+		
+// Add the mission to the existing mission types.
+DMS_StaticMissionTypes append [["lubjansk_mission",5]];
+
+3.	Put a3_dms.pbo into /@ExileServer/addons/ on server and start.
+		

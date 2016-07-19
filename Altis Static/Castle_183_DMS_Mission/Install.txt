@@ -1,0 +1,23 @@
+*******************************************************
+	"Castle 183" static mission for Altis.
+	Created by [CiC]red_ned using templates by eraser1 
+	17 years of CiC http://cic-gaming.co.uk
+*******************************************************
+	For Altis only.
+	Running on DMS System
+*******************************************************
+
+Installing.
+1. 	Copy castle_183.sqf into a3_dms.pbo missions/static
+2. 	Copy castle_183_buildings.sqf into a3_dms.pbo objects/static
+3. 	Extract  map_configs/altis_config.sqf
+4.	Find
+	DMS_StaticMissionTypes append [["saltflats",1],["slums",1]];
+	Change to (or add extra)
+	DMS_StaticMissionTypes append [["saltflats",1],["slums",1],["castle_183",1]];
+5.	Find
+	DMS_BasesToImportOnServerStart append ["saltflatsbase","slums_objects"];
+	Change to (or add extra)
+	DMS_StaticMissionTypes append ["saltflatsbase","slums_objects","castle_183_buildings"];
+6.	Repack altis_config.sqf	into PBO
+7. 	Put a3_dms.pbo into /@ExileServer/addons/ on server and start.

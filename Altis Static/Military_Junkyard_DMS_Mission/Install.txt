@@ -1,0 +1,37 @@
+*******************************************************
+	"Military Junkyard" static mission for Altis.
+	Created by [CiC]red_ned using templates by eraser1 
+	Mapping by [CiC]red_ned and Pradatoru
+	17 years of CiC http://cic-gaming.co.uk
+*******************************************************
+	For Altis only.
+	Running on DMS System
+*******************************************************
+
+Installing.
+1. 	Copy military_junkyard.sqf into a3_dms.pbo missions/static
+2. 	Copy military_junkyard_buildings.sqf into a3_dms.pbo objects/static
+3. 	Extract  map_configs/altis_config.sqf
+4.	Find
+	DMS_StaticMissionTypes append [["saltflats",1],["slums",1]];
+	Change to (or add extra)
+	DMS_StaticMissionTypes append [["saltflats",1],["slums",1],["ai_island",1],["military_junkyard",1]];
+5.	Find
+	DMS_BasesToImportOnServerStart append ["saltflatsbase","slums_objects"];
+	Change to (or add extra)
+	DMS_BasesToImportOnServerStart append ["saltflatsbase","slums_objects","ai_island_buildings","military_junkyard_buildings"];
+6.	Repack altis_config.sqf	into PBO
+7. 	Put a3_dms.pbo into /@ExileServer/addons/ on server and start.
+
+No BE or InfiSTAR additions apart from what you installed to run DMS. this will not run without DMS. 
+
+You can edit the mission text by changing the following in military_junkyard.sqf 
+
+// Define Mission Start message
+_msgStart = ['#FFFF00', "A large group of terrorists have invaded the military junkyard"];
+
+// Define Mission Win message
+_msgWIN = ['#0080ff',"Convicts have successfully killed the terrorists and claimed all the crates"];
+
+// Define Mission Lose message
+_msgLOSE = ['#FF0000',"The terrorists have gone off fto find more parts for their vehicles..."];
