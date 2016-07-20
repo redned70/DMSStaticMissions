@@ -1,5 +1,5 @@
 /*
-	"Kore Factory" & "Storage Invasion" static missions for Altis.
+	"Kore Factory" & "Storage Invasion" v2.0 static missions for Altis.
 	Created by [CiC]red_ned using templates by eraser1
 	Hardcore mode has Vehicle with 50% its persistent
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk

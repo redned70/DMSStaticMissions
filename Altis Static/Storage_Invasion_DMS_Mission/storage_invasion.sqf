@@ -1,5 +1,5 @@
 /*
-	"Storage Invasion" static mission for Altis.
+	"Storage Invasion" v2.0 static mission for Altis.
 	Hardcore mode has Exile_Car_Ural_Open_Military with 50% its persistent
 	Created by [CiC]red_ned using templates by eraser1 
 	Credits to Pradatoru for mapping

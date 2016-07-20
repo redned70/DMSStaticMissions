@@ -1,5 +1,5 @@
 *******************************************************
-	"Kore Factory" static mission for Altis.
+	"Kore Factory" v2.0 static mission for Altis.
 	Credits to Pradatoru for mapping
 	Created by [CiC]red_ned using templates by eraser1 
 	17 years of CiC http://cic-gaming.co.uk
