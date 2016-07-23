@@ -10,4 +10,7 @@
 *******************************************************<BR>
 You must have DMS installed<BR>
 
-Some missions contain v1.0 zips with original hardcore only mode
+Some missions contain v1.0 zips with original hardcore only mode<BR>
+Kore Factory and Storage Invasion come in both v1.0 and v2.0<BR>
+v1.0 = Hardcore only<BR>
+v2.0 = Random difficulty selection<BR>
