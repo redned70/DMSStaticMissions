@@ -1,13 +1,13 @@
 /*
-	"Storage Invasion" v2.0 static mission for Altis.
-	Hardcore mode has Exile_Car_Ural_Open_Military with 50% its persistent
+	"Storage Invasion" v2.1 static mission for Altis.
+	Exile_Car_Ural_Open_Military increases persistent chance with difficulty
 	Created by [CiC]red_ned using templates by eraser1 
 	Credits to Pradatoru for mapping
 	17 years of CiC
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
-private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_CoinTossP", "_CoinToss", "_msgWIN", "_vehicle", "_pinCode"];
+private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN", "_vehicle", "_pinCode", "_VehicleChance"];
 
 // For logging purposes
 _num = DMS_MissionCount;
@@ -25,73 +25,86 @@ if ([_pos,DMS_StaticMinPlayerDistance] call DMS_fnc_IsPlayerNearby) exitWith {"d
 _PossibleDifficulty		= 	[	
 								"easy",
 								"moderate",
+								"moderate",
 								"difficult",
+								"difficult",
+								"difficult",
+								"hardcore",
+								"hardcore",
+								"hardcore",
 								"hardcore"
 							];
 //choose mission difficulty and set value and is also marker colour
-_difficultyM = _PossibleDifficulty call BIS_fnc_selectRandom;
+_difficultyM = selectRandom _PossibleDifficulty;
 
-//easy
-if (_difficultyM isEqualTo "easy") then {
+switch (_difficultyM) do
+{
+	case "easy":
+	{
 _difficulty = "easy";									//AI difficulty
 _AICount = (15 + (round (random 5)));					//AI starting numbers
 _AIMaxReinforcements = (10 + (round (random 30)));		//AI reinforcement cap
 _AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
 _AIwave = (4 + (round (random 4)));						//Max amount of AI in reinforcement wave
 _AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
+_VehicleChance = 10;									//10% SpawnPersistentVehicle chance
 _crate_weapons0 	= (5 + (round (random 20)));		//Crate 0 weapons number
 _crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
 _crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
 _crate_weapons1 	= (4 + (round (random 2)));			//Crate 1 weapons number
 _crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
 _crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
-								};
-//moderate
-if (_difficultyM isEqualTo "moderate") then {
+	};
+	case "moderate":
+	{
 _difficulty = "moderate";
 _AICount = (20 + (round (random 5)));
 _AIMaxReinforcements = (20 + (round (random 20)));
 _AItrigger = (10 + (round (random 10)));
 _AIwave = (5 + (round (random 3)));
 _AIdelay = (55 + (round (random 120)));
+_VehicleChance = 20;									//20% SpawnPersistentVehicle chance
 _crate_weapons0 	= (10 + (round (random 15)));
 _crate_items0 		= (10 + (round (random 15)));
 _crate_backpacks0 	= (3 + (round (random 1)));
 _crate_weapons1 	= (6 + (round (random 3)));
 _crate_items1 		= (20 + (round (random 30)));
 _crate_backpacks1 	= (5 + (round (random 4)));
-								};
-//difficult
-if (_difficultyM isEqualTo "difficult") then {
+	};
+	case "difficult":
+	{
 _difficulty = "difficult";
 _AICount = (20 + (round (random 7)));
 _AIMaxReinforcements = (30 + (round (random 20)));
 _AItrigger = (10 + (round (random 10)));
 _AIwave = (6 + (round (random 2)));
 _AIdelay = (55 + (round (random 120)));
+_VehicleChance = 75;									//75% SpawnPersistentVehicle chance
 _crate_weapons0 	= (30 + (round (random 20)));
 _crate_items0 		= (15 + (round (random 10)));
 _crate_backpacks0 	= (3 + (round (random 1)));
 _crate_weapons1 	= (8 + (round (random 3)));
 _crate_items1 		= (30 + (round (random 20)));
 _crate_backpacks1 	= (6 + (round (random 4)));
-								};
-//hardcore								
-if (_difficultyM isEqualTo "hardcore") then {
+	};
+	//case "hardcore":
+	default
+	{
 _difficulty = "hardcore";
 _AICount = (20 + (round (random 10)));
 _AIMaxReinforcements = (40 + (round (random 10)));
 _AItrigger = (15 + (round (random 5)));
 _AIwave = (6 + (round (random 2)));
 _AIdelay = (55 + (round (random 120)));
+_VehicleChance = 90;									//90% SpawnPersistentVehicle chance
 _crate_weapons0 	= (20 + (round (random 5)));
 _crate_items0 		= (20 + (round (random 5)));
 _crate_backpacks0 	= (2 + (round (random 1)));
 _crate_weapons1 	= (10 + (round (random 2)));
 _crate_items1 		= (40 + (round (random 10)));
 _crate_backpacks1 	= (10 + (round (random 2)));
-								};
-
+	};
+};
 
 // Define spawn locations for AI Soldiers. These will be used for the initial spawning of AI as well as reinforcements.
 // The center spawn location is added 3 times so at least 3 AI will spawn initially at the center location, and so that future reinforcements are more likely to spawn at the center.
@@ -109,7 +122,6 @@ _AISoldierSpawnLocations =
 	[18299.2,15495.4,0]
 ];
 
-
 _group =
 [
 	_AISoldierSpawnLocations+[_pos,_pos,_pos],			// Pass the regular spawn locations as well as the center pos 3x
@@ -118,7 +130,6 @@ _group =
 	"random",
 	_side
 ] call DMS_fnc_SpawnAIGroup_MultiPos;
-
 
 //Reduce Static guns if mission is easy
 if (_difficultyM isEqualTo "easy") then {
@@ -162,7 +173,6 @@ _staticGuns =
 	"random"
 ] call DMS_fnc_SpawnAIStaticMG;				
 										};
-
 
 // Define the classnames and locations where the crates can spawn (at least 2, since we're spawning 2 crates)
 _crateClasses_and_Positions =
@@ -242,12 +252,8 @@ _crate_loot_values1 =
 	_crate_backpacks1 		// Set in difficulty select - Backpacks
 ];
 
-// If mission is Hardcore then do coin toss calculation for vehicle and message for pin code
-// If not hardcore then set objects without vehicle or win message with pin code
-if (_difficultyM isEqualTo "hardcore") then {
-												_CoinTossP = ["Heads", "Tails"];
-												_CoinToss = _CoinTossP call BIS_fnc_selectRandom;
-		if (_CoinToss isEqualTo "Heads") then {
+// is %chance greater than random number
+if (_VehicleChance >= (random 100)) then {
 											_pinCode = (1000 +(round (random 8999)));
 											_vehicle = ["Exile_Car_Ural_Open_Military",[18172.263672, 15515.980469, 0.01],_pinCode] call DMS_fnc_SpawnPersistentVehicle;
 											_msgWIN = ['#0080ff',format ["Convicts have successfully killed the Terrorists and stolen all the crates, Ural entry code is %1...",_pinCode]];
@@ -263,20 +269,9 @@ _missionObjs =
 	[_vehicle],				// vehicle prize
 	[[_crate0,_crate_loot_values0],[_crate1,_crate_loot_values1]]
 ];	
-											} else
-											{
-// Define mission-spawned objects and loot values without vehicle
-_missionObjs =
-[
-	_staticGuns,			// static gun(s). Note, we don't add the base itself because it already spawns on server start.
-	[],
-	[[_crate0,_crate_loot_values0],[_crate1,_crate_loot_values1]]
-];											
-											_msgWIN = ['#0080ff',"Convicts have successfully killed the Terrorists and stolen all the crates"];											
-											};
 
 // Define Mission Start message
-_msgStart = ['#FFFF00', "Terrorists are raiding a storage facility"];
+_msgStart = ['#FFFF00',format[" %1 terrorists are raiding a storage facility",_difficultyM]];
 
 // Define Mission Win message defined in vehicle choice
 
@@ -297,7 +292,6 @@ _markers =
 _circle = _markers select 1;
 _circle setMarkerDir 0;
 _circle setMarkerSize [250,100];
-
 
 _time = diag_tickTime;
 
@@ -347,20 +341,15 @@ if !(_added) exitWith
 
 	_cleanup call DMS_fnc_CleanUp;
 
-
 	// Delete the markers directly
 	{deleteMarker _x;} forEach _markers;
-
 
 	// Reset the mission count
 	DMS_MissionCount = DMS_MissionCount - 1;
 };
 
-
 // Notify players
 [_missionName,_msgStart] call DMS_fnc_BroadcastMissionStatus;
-
-
 
 if (DMS_DEBUG) then
 {
