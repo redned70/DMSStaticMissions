@@ -7,7 +7,7 @@
 	For Tanoa only.
 	Running on DMS System
 	v1.0 is hardcore only with no vehicle.
-	v2.1 is multi difficulties with chance of persistent vehicle and lots of editable functions.
+	v2.1 is multi difficulties with lots of editable functions.
 *******************************************************
 
 Installing.
