@@ -1,3 +1,8 @@
+//can be loaded into m3editor
+//Land_PaperBox_closed_F = possible loot boxes
+//Flag_AAF_F = centre point for mission
+//Land_ChairPlastic_F = AI positions
+//Land_ChairWood_F = Static gun positions
 [
     ["Land_Cargo_House_V1_F",[7086.95,15776.9,1.28775],0,0,0,false],
     ["Land_Cargo_House_V1_F",[7096.29,15775.7,1.01137],0,0,0,false],
@@ -347,5 +352,5 @@
     ["Land_PaperBox_closed_F",[7068.9,15692.1,0],0,0,0,false],
     ["Land_PaperBox_closed_F",[7071.96,15751.4,0],0,0,0,false],
     ["Land_PaperBox_closed_F",[7134.71,15781.9,0],0,0,0,false],
-    ["mas_add_FlagCarrier_afrciv",[7100.12,15745.2,0],0,0,0,false]
+    ["Flag_AAF_F",[7100.12,15745.2,0],0,0,0,false]
 ]

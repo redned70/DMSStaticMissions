@@ -1,7 +1,7 @@
 /*
-	"Operation Foothold" v2.1 static mission for Bornholm.
-	Created by [CiC]red_ned using templates by eraser1 
-	17 years of CiC http://cic-gaming.co.uk
+	"Hotel Invasion" v2.1 static mission for Tanoa.
+	Created by [CiC]red_ned using templates by eraser1
+	17 years of CiC
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
@@ -13,7 +13,7 @@ _num = DMS_MissionCount;
 // Set mission side (only "bandit" is supported for now)
 _side = "bandit";
 
-_pos = [7100.12,15745.2,0]; //insert the centre here
+_pos = [12437.3,14207.5,0]; //insert the centre here
 
 if ([_pos,DMS_StaticMinPlayerDistance] call DMS_fnc_IsPlayerNearby) exitWith {"delay"};
 
@@ -30,7 +30,6 @@ _PossibleDifficulty		= 	[
 								"hardcore",
 								"hardcore"
 							];
-
 //choose mission difficulty and set value and is also marker colour
 _difficultyM = selectRandom _PossibleDifficulty;
 
@@ -103,45 +102,49 @@ _crate_backpacks1 	= (10 + (round (random 2)));
 // The center spawn location is added 3 times so at least 3 AI will spawn initially at the center location, and so that future reinforcements are more likely to spawn at the center.
 _AISoldierSpawnLocations =
 [
-[7061.15,15688.4,0.0294113],
-[7049.15,15691.5,4.50158],
-[7056.9,15698.8,4.50158],
-[7052.89,15722,0],
-[7053.45,15755.7,0],
-[7052.1,15790.5,0],
-[7060.78,15774.4,0],
-[7081.85,15764.7,0],
-[7102.5,15761.8,0],
-[7131.38,15762.8,0],
-[7084.99,15796.4,0],
-[7218.88,15767.4,0],
-[7218.94,15752.8,0],
-[7181.74,15779.8,0],
-[7168.35,15779.8,0],
-[7150.28,15798.3,4.21044],
-[7157.44,15790.1,3.98317],
-[7185.44,15738.4,0],
-[7187.86,15743.2,4.16763],
-[7187.34,15772.1,4.26975],
-[7190.82,15717.9,0],
-[7190.84,15690.6,0],
-[7177.29,15686.3,0],
-[7120.79,15699.5,0],
-[7100.18,15700.6,0],
-[7080.71,15703,0],
-[7079.81,15731,0],
-[7120.98,15734.8,0],
-[7109.03,15735.3,0],
-[7145.6,15735.5,0],
-[7160.64,15693.4,0],
-[7139.41,15692.5,0]
+		[12284.2,14233.4,0],
+		[12285.6,14239.6,0],
+		[12345.2,14207.3,0],
+		[12373.2,14197.8,0],
+		[12395.4,14184.6,0],
+		[12410.2,14184.1,0],
+		[12425.2,14183.8,0],
+		[12447.8,14184.8,0],
+		[12467.2,14188.4,0],
+		[12489.2,14189.3,0], 
+		[12482.3,14205.3,0],
+		[12488.5,14213.7,0],
+		[12472.1,14232,0],
+		[12496.1,14236.3,0],
+		[12517.4,14223.1,0],
+		[12531.7,14265.6,0],
+		[12585,14266.2,0],
+		[12617.2,14166.9,0],
+		[12516.1,14193.7,0],
+		[12455.1,14228.5,0],
+		[12436.7,14237.7,0],
+		[12385.2,14225.1,0],
+		[12444.7,14208.9,0],
+		[12430.7,14206.2,0],
+		[12417.6,14223.6,0],
+		[12434.5,14223.8,0.232742],
+		[12434.8,14213.3,0.250225],
+		[12465.3,14149.3,0],
+		[12459.4,14120.4,0],
+		[12407.9,14265.3,0],
+		[12452,14275.9,0],
+		[12440.4,14228.9,0.0927734],
+		[12514.8,14229.8,0.211414],
+		[12422.1,14174.8,0],
+		[12439,14172.9,0],
+		[12464.6,14176.4,0]
 ];
 
 _group =
 [
 	_AISoldierSpawnLocations+[_pos,_pos,_pos],			// Pass the regular spawn locations as well as the center pos 3x
-	_AICount,
-	_difficulty,
+	_AICount,											// Set in difficulty select
+	_difficulty,										// Set in difficulty select
 	"random",
 	_side
 ] call DMS_fnc_SpawnAIGroup_MultiPos;
@@ -151,15 +154,18 @@ if (_difficultyM isEqualTo "easy") then {
 _staticGuns =
 [
 	[
-		[7146.33,15746,0],
-		[7183.31,15729.1,10.0807],
-		[7183.17,15720.8,10.0625],
-		[7145.74,15704.1,0],
-		[7066.01,15723.3,10.0097],
-		[7056.56,15694,4.45152],
-		[7181.89,15711.2,24.3318],
-		[7181.94,15704.8,24.3318],
-		[7151.94,15790.9,4.25827]
+		[12343.4,14212.7,0.0848351],
+		[12279.9,14227,0],
+		[12448.1,14229.6,0.129326],
+		[12438.8,14224.2,0.232151],
+		[12518,14229.3,0.13847],
+		[12496,14241.8,0],
+		[12491.6,14214.1,0],
+		[12526.2,14191.5,0],
+		[12436.1,14174.8,0],
+		[12410.8,14192.6,0],
+		[12364.5,14207.5,0],
+		[12415.3,14243,0]
 	],
 	_group,
 	"assault",
@@ -172,20 +178,21 @@ _staticGuns =
 _staticGuns =
 [
 	[
-		[7146.33,15746,0],
-		[7183.31,15729.1,10.0807],
-		[7183.17,15720.8,10.0625],
-		[7167.24,15703.8,0],
-		[7145.74,15704.1,0],
-		[7066.01,15723.3,10.0097],
-		[7083.87,15755.9,0],
-		[7128.77,15778.5,0],
-		[7109.59,15755.2,0],
-		[7115.51,15734.3,0],
-		[7056.56,15694,4.45152],
-		[7181.89,15711.2,24.3318],
-		[7181.94,15704.8,24.3318],
-		[7151.94,15790.9,4.25827]
+		_pos vectorAdd [0,0,0],		// center pos
+		[12343.4,14212.7,0.0848351],
+		[12279.9,14227,0],
+		[12448.1,14229.6,0.129326],
+		[12438.8,14224.2,0.232151],
+		[12518,14229.3,0.13847],
+		[12496,14241.8,0],
+		[12491.6,14214.1,0],
+		[12526.2,14191.5,0],
+		[12465.6,14191.5,0],
+		[12436.1,14174.8,0],
+		[12410.8,14192.6,0],
+		[12395.5,14194.5,0],
+		[12364.5,14207.5,0],
+		[12415.3,14243,0]
 	],
 	_group,
 	"assault",
@@ -195,16 +202,18 @@ _staticGuns =
 ] call DMS_fnc_SpawnAIStaticMG;
 										};
 
-
 // Define the classnames and locations where the crates can spawn (at least 2, since we're spawning 2 crates)
 _crateClasses_and_Positions =
 [
-	[[7156.96,15697.6,-0.0548019],"I_CargoNet_01_ammo_F"],
-	[[7135.64,15696.4,0],"I_CargoNet_01_ammo_F"],
-	[[7114.54,15740.7,0],"I_CargoNet_01_ammo_F"],
-	[[7068.9,15692.1,0],"I_CargoNet_01_ammo_F"],
-	[[7071.96,15751.4,0],"I_CargoNet_01_ammo_F"],
-	[[7134.71,15781.9,0],"I_CargoNet_01_ammo_F"]
+	[[12497.5,14210.5,0.139198],"I_CargoNet_01_ammo_F"],
+	[[12523.2,14228.5,0.16119],"I_CargoNet_01_ammo_F"],
+	[[12436.9,14216.2,0.228447],"I_CargoNet_01_ammo_F"],
+	[[12404.2,14196,0.325665],"I_CargoNet_01_ammo_F"],
+	[[12499.8,14191.3,0.167206],"I_CargoNet_01_ammo_F"],
+	[[12453.8,14173.9,0.317108],"I_CargoNet_01_ammo_F"],
+	[[12415.8,14173.4,0.32922],"I_CargoNet_01_ammo_F"],
+	[[12428.7,14172.9,0.289165],"I_CargoNet_01_ammo_F"],
+	[[12471.7,14195.7,0.413441],"I_CargoNet_01_ammo_F"]
 ];
 
 {
@@ -274,24 +283,25 @@ _crate_loot_values1 =
 	_crate_backpacks1 		// Set in difficulty select - Backpacks
 ];
 
+// Define mission-spawned objects and loot values with vehicle
 _missionObjs =
 [
 	_staticGuns,			// static gun(s). Note, we don't add the base itself because it already spawns on server start.
-	[],
+	[],						// no vehicle prize
 	[[_crate0,_crate_loot_values0],[_crate1,_crate_loot_values1]]
 ];	
-
+											
 // Define Mission Start message
-_msgStart = ['#FFFF00',format["%1 terrorists are trying to get a foothold in the area, stop them!",_difficultyM]];
+_msgStart = ['#FFFF00',format["A hotel is being invaded by %1 terrorists",_difficultyM]];
 
-// Define Mission Win message
-_msgWIN = ['#0080ff',"Convicts have successfully killed the terrorists and stolen all the crates"];
+// Define Mission Win message defined in vehicle choice
+_msgWIN = ['#0080ff',"Convicts have successfully cleared the hotel and stolen all the crates"];
 
 // Define Mission Lose message
-_msgLOSE = ['#FF0000',"The terrorists have moved off to resupply..."];
+_msgLOSE = ['#FF0000',"Invaders have stripped the hotel of loot and left."];
 
 // Define mission name (for map marker and logging)
-_missionName = "Operation Foothold";
+_missionName = "Hotel Invasion";
 
 // Create Markers
 _markers =

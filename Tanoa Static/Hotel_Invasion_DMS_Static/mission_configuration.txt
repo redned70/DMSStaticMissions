@@ -1,7 +1,6 @@
 /*
-	"Comms Alpha" static mission for Tanoa.
+	"Hotel Invasion" static mission for Tanoa.
 	Created by [CiC]red_ned using templates by eraser1
-	Hardcore mode has Vehicle with 50% its persistent
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
@@ -13,7 +12,7 @@ Note - I have tried to keep much of the new code in the sections where it was or
 **************************************************************************************************************************************************	
 >>>> This section describes the variables used inside the mission ** Don't change this line unless you know what you're doing!** and yes i had to add some original values due to now using them as full local variables.
 
-private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN", "_vehicle", "_VehicleChance", "_pinCode"];
+private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN"];
 
 >>>> What they all do later in the mission file
 
@@ -38,9 +37,6 @@ private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay"
 "_difficulty",					// Defines AI difficulty in easy mission diffficulty setting - an "easy" mission can have "hardcore" AI
 "_PossibleDifficulty",			// Defines list of possible mission difficulties (isnt linked to how diffficult the AI is) - you can add more to change % chance
 "_msgWIN",						// Defines mission win message - you can change to make mission win message different **Remeber there are a few versions including the pin code announce**
-"_vehicle",						// Defines object variable for mission - i.e. makes vehicle spawn if there is one **Don't Change**
-"_VehicleChance"				// Defines SpawnPersistentVehicle chance - all difficulties have a vehicle but this changes the chance of it being persistent.
-"_pinCode"						// Defines pin code for vehicle on hardcore mode **Don't Change**
 
 **************************************************************************************************************************************************	
 >>>> This section chooses which version of the script to run
@@ -203,43 +199,9 @@ _crate_loot_values1 =
 
 **************************************************************************************************************************************************	
 >>>> Peristent vehicle section
->> Check if chance is greater than a random number (set in difficulty section).
->> You can change % chance of persistent in the difficulty section.
-
-**************************************************************************************************************************************************	
-// is %chance greater than random number
-if (_VehicleChance >= (random 100)) then {
-											_pinCode = (1000 +(round (random 8999)));
-											_vehicle = ["Exile_Car_Ural_Covered_Military",[6188.366699, 16272.720703, 0.00143814],_pinCode] call DMS_fnc_SpawnPersistentVehicle;
-											_msgWIN = ['#0080ff',format ["Convicts have successfully killed everyone and stolen all the crates, Ural entry code is %1...",_pinCode]];
-											} else
-											{
-											_vehicle = ["Exile_Car_Ural_Covered_Military",[6188.366699, 16272.720703, 0.00143814]] call DMS_fnc_SpawnNonPersistentVehicle;
-											_msgWIN = ['#0080ff',"Convicts have successfully killed everyone and stolen all the crates"];
-											};
-
-// Define mission-spawned objects and loot values with vehicle
-_missionObjs =
-[
-	_staticGuns,			// static gun(s). Note, we don't add the base itself because it already spawns on server start.
-	[_vehicle],				// vehicle prize
-	[[_crate0,_crate_loot_values0],[_crate1,_crate_loot_values1]]
-];	
-**************************************************************************************************************************************************											
->> to remove vehicle from all difficulties just replace whole section with 		
-				
-_missionObjs =
-[
-	_staticGuns,			// static gun(s). Note, we don't add the base itself because it already spawns on server start.
-	[],
-	[[_crate0,_crate_loot_values0],[_crate1,_crate_loot_values1]]
-];											
-_msgWIN = ['#0080ff',"Convicts have successfully killed the Terrorists and stolen all the crates"];	
+>> not used in this mission
 											
 **************************************************************************************************************************************************												
->> You should have got the idea by now! you could list each difficulty individually with different % chance of vehicle or persistent vehicle etc but you need to not use "else" and make sure you do an outcome for each difficulty even if it is just set - i did one last example here for you with peristent % chance dropping on each lower level and then no persistent for easy.
-**************************************************************************************************************************************************	
-
 >>>> thats basically the whole set up which should give flexibility on % chance of mission from the main DMS config, % chance of a difficulty from _PossibleDifficulty and then all the individual settings along the way giving some random parameters for each difficulty level.
 
 Enjoy..
