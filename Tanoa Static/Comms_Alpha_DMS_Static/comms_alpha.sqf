@@ -287,7 +287,7 @@ _crate_loot_values1 =
 if (_VehicleChance >= (random 100)) then {
 											_pinCode = (1000 +(round (random 8999)));
 											_vehicle = ["Exile_Car_BTR40_Camo",[9947,11799.4,0],_pinCode] call DMS_fnc_SpawnPersistentVehicle;
-											_msgWIN = ['#0080ff',format ["CConvicts have successfully cleared Comms Alpha Station and stolen all the crates, BTR40 entry code is %1...",_pinCode]];
+											_msgWIN = ['#0080ff',format ["Convicts have successfully cleared Comms Alpha Station and stolen all the crates, BTR40 entry code is %1...",_pinCode]];
 											} else
 											{
 											_vehicle = ["Exile_Car_BTR40_Camo",[9947,11799.4,0]] call DMS_fnc_SpawnNonPersistentVehicle;
