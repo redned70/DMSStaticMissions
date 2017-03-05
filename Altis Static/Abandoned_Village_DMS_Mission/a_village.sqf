@@ -162,13 +162,13 @@ _missionObjs =
 ];
 
 // Define Mission Start message
-_msgStart = ['#FFFF00', "CiC-Admins are raiding the abandoned village for cake and beer"];
+_msgStart = ['#FFFF00', "Terrorists are raiding the abandoned village for cake and beer"];
 
 // Define Mission Win message
-_msgWIN = ['#0080ff',"Convicts have successfully killed the CiC-Admins and stolen all the cake"];
+_msgWIN = ['#0080ff',"Convicts have successfully killed the Terrorists and stolen all the cake"];
 
 // Define Mission Lose message
-_msgLOSE = ['#FF0000',"CiC-Admins got bored and buggered off taking all the goodies..."];
+_msgLOSE = ['#FF0000',"Terrorists got bored and buggered off taking all the goodies..."];
 
 // Define mission name (for map marker and logging)
 _missionName = "Abandoned Village";

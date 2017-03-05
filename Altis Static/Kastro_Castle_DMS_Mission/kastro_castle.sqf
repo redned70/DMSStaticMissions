@@ -205,13 +205,13 @@ _missionObjs =
 ];
 
 // Define Mission Start message
-_msgStart = ['#FFFF00', "CiC-Admins have invaded the castle gift shop"];
+_msgStart = ['#FFFF00', "Terrorists have invaded the castle gift shop"];
 
 // Define Mission Win message
-_msgWIN = ['#0080ff',"Convicts have successfully killed the CiC-Admins and stolen all the crates"];
+_msgWIN = ['#0080ff',"Convicts have successfully killed the Terrorists and stolen all the crates"];
 
 // Define Mission Lose message
-_msgLOSE = ['#FF0000',"CiC-Admins got bored and buggered off taking all the goodies..."];
+_msgLOSE = ['#FF0000',"Terrorists got bored and buggered off taking all the goodies..."];
 
 // Define mission name (for map marker and logging)
 _missionName = "Kavala Castle";
