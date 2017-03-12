@@ -1,0 +1,56 @@
+*******************************************************
+	"Georgetown Invasion" BETA static mission for Tanoa.
+	Thanks to jmayr2000 for helping debug and test.
+	Created by [CiC]red_ned using templates by eraser1 
+	17 years of CiC http://cic-gaming.co.uk
+*******************************************************
+	For Tanoa only.
+	Running on DMS System
+*******************************************************
+georgetown_v1.0 is hardcore only with no AI vehicles.
+georgetown_noheli is multi difficulties with chance of persistent vehicle and ground AI patrols.
+georgetown is multi difficulties with chance of persistent vehicle with ground AI patrols and AI heli.
+*******************************************************
+
+Installing.
+1. 	Copy georgetown.sqf into a3_dms.pbo missions/static
+2. 	Copy georgetown_buildings.sqf into a3_dms.pbo objects/static
+
+>>>>>>>>Either<<<<<<<<<<<
+3. 	Extract  map_configs/tanoa_config.sqf
+4.	Add to end
+
+// Add the "georgetown" mission to the existing mission types.
+DMS_StaticMissionTypes append 
+[["georgetown",5]];
+*******************************************************
+DO NOT ADD THE BUILDINGS - they are called on mission spawn.
+*******************************************************
+5.	Repack tanoa_config.sqf	into PBO
+
+>>>>>>>>OR<<<<<<<<<<<<<<
+Edit main DMS config.sqf
+6.	Find
+	DMS_StaticMissionTypes =			[							// List of STATIC missions with spawn chances.
+											//["saltflats",1],		//<--Example (already imported by default on Altis)
+											//["slums",1]			//<--Example (already imported by default on Altis)
+										];
+
+	DMS_BasesToImportOnServerStart = 	[							// List of static bases to import on server startup (spawned post-init). This will reduce the amount of work the server has to do when it actually spawns static missions, and players won't be surprised when a base suddenly pops up. You can also include any other M3E-exported bases to spawn here.
+											//"saltflatsbase",		//<--Example (already imported by default on Altis)
+											//"slums_objects"		//<--Example (already imported by default on Altis)
+											// DO NOT ADD THE BUILDINGS - they are called on mission spawn.
+										];
+replace with
+
+	DMS_StaticMissionTypes =			[
+											["georgetown",1]
+										];
+
+	DMS_BasesToImportOnServerStart = 	[
+											// DO NOT ADD THE BUILDINGS - they are called on mission spawn.
+										];
+										
+7. Save and repack config into PBO
+
+8. 	Put a3_dms.pbo into /@ExileServer/addons/ on server and start.
