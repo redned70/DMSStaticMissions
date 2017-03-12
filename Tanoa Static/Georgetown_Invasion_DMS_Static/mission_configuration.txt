@@ -113,12 +113,25 @@ switch (_difficultyM) do
 **************************************************************************************************************************************************	
 >>>> Reinforcement section
 
-this is basically set to reinforce the vehicles up to 5 times and the normal non-sniper AI as per the numbers in config
+This is basically set to reinforce the vehicles up to 5 times and the normal non-sniper AI as per the numbers in config
+
+All the locations for AI are in strings then we use ExileClient_util_array_shuffle to shuffle and randomise the lists to make sure spawns and reinforcements are as random as possible
+
+// Shuffle the list of possible AI spawn locations
+_AISoldierSpawnLocations = _AISoldierSpawnLocations call ExileClient_util_array_shuffle;
+
+// Shuffle the list of possible sniper spawn locations
+_AISniperSpawnLocations = _AISniperSpawnLocations call ExileClient_util_array_shuffle;	
+
+// Shuffle the list of possible patrol spawn locations
+_AIPatrolSpawnLocations = _AIPatrolSpawnLocations call ExileClient_util_array_shuffle;
 
 
 
-
+**************************************************************************************************************************************************	
 >>>> This section just builds crate content from difficulty settings
+**************************************************************************************************************************************************	
+
 // setup crates with items from choices
 _crate_loot_values0 =
 [
@@ -133,7 +146,7 @@ _crate_loot_values1 =
 	_crate_backpacks1 		// Set in difficulty select - Backpacks
 ];
 
-// add cash to crates
+// add cash to crates from choices
 _crate0 setVariable ["ExileMoney", _cash0,true];
 _crate1 setVariable ["ExileMoney", _cash1,true];
 

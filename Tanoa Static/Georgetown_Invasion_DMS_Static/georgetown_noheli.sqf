@@ -155,6 +155,9 @@ _AISoldierSpawnLocations =	[
 								[5781.21,10188.3,0],
 								[5755.8,10215.8,0]
 							];
+// Shuffle the list of possible AI spawn locations
+_AISoldierSpawnLocations = _AISoldierSpawnLocations call ExileClient_util_array_shuffle;
+
 // Rooftop snipers as 2nd group (20 max)
 _AISniperSpawnLocations = 	[
 								[5741.25,10396.4,8.33376],
