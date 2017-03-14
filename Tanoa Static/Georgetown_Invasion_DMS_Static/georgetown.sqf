@@ -3,7 +3,7 @@
 	Created by [CiC]red_ned using templates by eraser1
 	Exile_Chopper_Huey_Desert increases persistent chance with difficulty
 	Reinforcements of AI vehicle patrols, 2 different groups of AI so one is dedicated sniper
-	This version includes AI heli
+	This version includes AI heli - thanks to aussie battler for help with this
 	Diffficulty of mission not linked to difficulty of AI if you want.
 	17 years of CiC
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
@@ -117,11 +117,12 @@ switch (_difficultyM) do
 		_cash1 = (1000 + round (random (5000)));				//Tabs for crate1
 	};
 };
-
-//define heli start, drop and class
+/*
+//define heli start, drop and class - not used anymore
 _spawnPos	=	[5500,10000,350];
 _dropPoint	=	[5765.37,10369,350];
 _heliClass	=	["Exile_Chopper_Huey_Armed_Green"];
+*/
 
 // Define spawn locations for AI Soldiers. These will be used for the initial spawning of AI as well as reinforcements.
 // The center spawn location is added 3 times so at least 3 AI will spawn initially at the center location, and so that future reinforcements are more likely to spawn at the center.
@@ -221,24 +222,23 @@ _group2 =	[
 				_side
 			] call DMS_fnc_SpawnAIGroup_MultiPos;
 			
-_group3	=	[														// Helicopter support group
-				_spawnPos,
-				1,													// 1 only and no reinforcements
-				_difficulty,
+_group3 =	[                                                       // Helicopter support group
+				_pos,                 								//heli reinforcements
+				1,
+				"random",
 				"random",
 				"bandit"
-			] call DMS_fnc_SpawnAIGroup;			
+			] call DMS_fnc_SpawnAIGroup;
 			[
-				_group3,
-				"random",
-				_difficulty,
-				_side,
-				[_dropPoint],
-				"true",
-				6,
-				"true",
-				_heliClass,
-				[_spawnPos]
+			_group3,
+			"random",
+			"difficult",
+			"bandit",
+			_pos,
+			true,
+			5,
+			false,
+			"Exile_Chopper_Huey_Armed_Green"
 			] call DMS_fnc_SpawnHeliReinforcement;
 
 _staticGuns =	[

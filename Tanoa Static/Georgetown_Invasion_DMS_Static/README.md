@@ -1,4 +1,4 @@
-# DMS Tanoa Static Georgetown Mission BETA
+# DMS Tanoa Static Georgetown Mission
 <b>Exile DMS Static Missions for Tanoa</b><br>
 
 <b>This mission is untested for some versions</b><br>
@@ -10,6 +10,7 @@ M3 Editor files included<br>
 	Created by [CiC]red_ned using templates by eraser1 
 	17 years of CiC http://cic-gaming.co.uk
 	Thanks to jmayr2000 for helping debug and test.
+	Thanks to aussie battler for helping me with heli reinforcements
 *******************************************************
 	For Tanoa only.
 	Running on DMS System
@@ -17,7 +18,7 @@ M3 Editor files included<br>
 You must have DMS installed<br>
 
 <b>New Georgetown mission (BETA)</b><br>
-Heli version is untested<br>
+Heli version is partially tested<br>
 No Heli version included<br>
 A simple v1.0 included<br>
 M3 Editor file included<br>
