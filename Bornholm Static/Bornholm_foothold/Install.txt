@@ -1,12 +1,17 @@
 *******************************************************
-	"Operation Foothold" static mission for Bornholm.
+	"Operation Foothold" v2.1 static mission for Bornholm.
 	Created by [CiC]red_ned using templates by eraser1 
-	17 years of CiC http://cic-gaming.co.uk
+	18 years of CiC http://cic-gaming.co.uk
+	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.u
 *******************************************************
 	For Bornholm only.
 	Running on DMS System
 	foothold_editor_file.sqf is raw editor file if you wish to change anything.
 *******************************************************
+
+<b>Updated: 27 March 2017</b><br>
+Added cash to crates<br>
+Tidied up code<br>
 
 Installing.
 1. 	Copy foothold.sqf into a3_dms.pbo missions/static
