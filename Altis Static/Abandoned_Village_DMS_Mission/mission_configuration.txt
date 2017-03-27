@@ -1,0 +1,155 @@
+/*
+	"Abandoned Village" v2.1 static mission for Altis.
+	Created by [CiC]red_ned using templates by eraser1
+	You can set the %chance of persistent vehicle on each difficulty
+	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
+*/
+
+How it works, and how to change things.
+Out of the box the mission should be fairly similar to original none difficulty mission versions with same install instructions.
+
+Note - I have tried to keep much of the new code in the sections where it was originally to make it easier to read and adjust, this isnt always the most convenient/quickest/smallest route but considering the amount of configuration that can be done i thought it would be easiest and simplest way.
+
+**************************************************************************************************************************************************	
+>>>> This section describes the variables used inside the mission ** Don't change this line unless you know what you're doing!** and yes i had to add some original values due to now using them as full local variables.
+
+private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN", "_vehicle", "_cash"];
+
+>>>> What they all do later in the mission file
+
+"_AICount",						// Defines starting AI count - you can change to make initial AI numbers different per mission difficulty
+"_AIdelay",						// Defines the amount of time between sensing if the AI numbers have fallen below the trigger number set in _AIwave, you can speed up missions or slow them down with this
+"_AIMaxReinforcements",			// Defines how many AI reinforcements are available to the mission - you can change per mission difficulty to lower or raise the amount of AI overall
+"_AItrigger",					// Defines how many AI trigger reinforcements - you can change per mission difficulty to lower or raise the amount of AI before reinforcements arrive
+"_AIwave",						// Defines maximum amount of AI which may be deployed at once in reinforcement trigger
+"_staticguns",					// Defines position of any static guns - used in a detect of "easy" mission to reduce amount of guns
+"_missionObjs",					// Defines what things are being spawned as part of mission and what to clean up at the end **Don't Change**
+"_crate0",						// Defines 1st crate position **Don't Change**
+"_crate1",						// Defines 2nd crate position **Don't Change**
+"_crate_loot_values0",			// Defines collection of weapons, items, backpacks in 1st crate **Don't Change**
+"_crate_loot_values1",			// Defines collection of weapons, items, backpacks in 2nd crate **Don't Change**
+"_crate_weapons0",				// Defines amount of weapons in 1st crate - you can change to adjust loot for each mission diffficulty
+"_crate_weapons1",				// Defines amount of weapons in 2nd crate - you can change to adjust loot for each mission diffficulty
+"_crate_items0",				// Defines amount of items in 1st crate - you can change to adjust loot for each mission diffficulty
+"_crate_items1",				// Defines amount of items in 2nd crate - you can change to adjust loot for each mission diffficulty
+"_crate_backpacks0",			// Defines amount of backpacks in 1st crate - you can change to adjust loot for each mission diffficulty
+"_crate_backpacks1",			// Defines amount of backpacks in 2nd crate - you can change to adjust loot for each mission diffficulty
+"_difficultyM",					// Defines mission difficulty result (also used for the mission marker) **Don't Change**
+"_difficulty",					// Defines AI difficulty in easy mission diffficulty setting - an "easy" mission can have "hardcore" AI
+"_PossibleDifficulty",			// Defines list of possible mission difficulties (isnt linked to how diffficult the AI is) - you can add more to change % chance
+"_msgWIN",						// Defines mission win message - you can change to make mission win message different **Remeber there are a few versions including the pin code announce**
+"_vehicle",						// Defines object variable for mission - i.e. makes vehicle spawn if there is one **Don't Change**
+"_cash"							// Defines amount of cash spawning in the crate(s).
+
+**************************************************************************************************************************************************	
+>>>> This section chooses which version of the script to run
+//create possible difficulty add more of one difficulty to weight it towards that
+_PossibleDifficulty		= 	[	
+								"easy",
+								"moderate",
+								"difficult",
+								"hardcore"
+							];
+//choose mission difficulty and set value and is also marker colour
+_difficultyM = selectRandom _PossibleDifficulty;
+
+>> You can change the % chance of each difficulty by adding more of that one for example
+
+_PossibleDifficulty		= 	[	
+								"easy",
+								"easy",
+								"easy",
+								"easy",
+								"moderate",
+								"moderate",
+								"moderate",
+								"difficult",
+								"difficult",
+								"hardcore"
+							];
+
+>> Now instead of 25% chance of all the chances are 40% easy, 30% moderate, 20% difficult and 10% hardcore
+**************************************************************************************************************************************************	
+
+>>>> Mission difficulty settings - you can change setting per "_difficultyM" to contain different settings - used a lot of randomising here.
+>> Notice just because it is an "easy" mission doesnt mean the AI will be easy
+
+switch (_difficultyM) do
+{
+	case "easy":
+	{
+		_difficulty = "easy";									//AI difficulty
+		_AICount = (20 + (round (random 5)));					//AI starting numbers
+		_AIMaxReinforcements = (10 + (round (random 30)));		//AI reinforcement cap
+		_AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
+		_AIwave = (4 + (round (random 4)));						//Max amount of AI in reinforcement wave
+		_AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
+		_cash = (250 + round (random (500)));					//this gives 250 to 750 cash
+		_crate_weapons0 	= (5 + (round (random 20)));		//Crate 0 weapons number
+		_crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
+		_crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
+		_crate_weapons1 	= (4 + (round (random 2)));			//Crate 1 weapons number
+		_crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
+		_crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
+	};						
+
+**************************************************************************************************************************************************	
+>>>> Reinforcement section
+>> Section is mostly set but you can adjust most things in the main difficulty settings
+
+// Define the group reinforcements
+_groupReinforcementsInfo =
+[
+	[
+		_group,			// pass the group
+		[
+			[
+				0,		// Let's limit number of units instead...
+				0
+			],
+			[
+				_AIMaxReinforcements,	// Maximum units that can be given as reinforcements (defined in difficulty selection).
+				0
+			]
+		],
+		[
+			_AIdelay,		// The delay between reinforcements. >> you can change this in difficulty settings
+			diag_tickTime
+		],
+		_AISoldierSpawnLocations,
+		"random",
+		_difficulty,
+		_side,
+		"reinforce",
+		[
+			_AItrigger,		// Set in difficulty select - Reinforcements will only trigger if there's fewer than X members left
+			_AIwave			// X reinforcement units per wave. >> you can change this in mission difficulty section
+		]
+	]
+];
+
+
+>>>> This section just builds crate content from difficulty settings
+// setup crates with items from choices
+_crate_loot_values0 =
+[
+	_crate_weapons0,		// Set in difficulty select - Weapons
+	_crate_items0,			// Set in difficulty select - Items
+	_crate_backpacks0 		// Set in difficulty select - Backpacks
+];
+_crate_loot_values1 =
+[
+	_crate_weapons1,		// Set in difficulty select - Weapons
+	_crate_items1,			// Set in difficulty select - Items
+	_crate_backpacks1 		// Set in difficulty select - Backpacks
+];
+
+// add cash to crate
+_crate1 setVariable ["ExileMoney", _cash,true];	
+										
+**************************************************************************************************************************************************												
+
+>>>> thats basically the whole set up which should give flexibility on % chance of mission from the main DMS config, % chance of a difficulty from _PossibleDifficulty and then all the individual settings along the way giving some random parameters for each difficulty level with the overall _difficultyM being the mission marker (so that you could have easy AI on the moderate mission etc).
+
+Enjoy..
+
