@@ -266,7 +266,7 @@ _missionObjs =
 				];
 
 // Define Mission Start message
-__msgStart = ['#FFFF00',format["A large group of %1 Terrorists have invaded Bomos",_difficultyM]];
+_msgStart = ['#FFFF00',format["A large group of %1 Terrorists have invaded Bomos",_difficultyM]];
 
 // Define Mission Win message
 _msgWIN = ['#0080ff',"Convicts have successfully killed the Terrorists and claimed all the crates"];
