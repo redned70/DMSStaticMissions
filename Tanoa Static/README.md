@@ -24,7 +24,7 @@ You must have DMS installed<br>
 <b>New Georgetown mission</b><br>
 <b>Use at own risk and report any issues to forums</b><br>
 Thanks to aussie battler for helping me with heli reinforcements <br>
-Heli version is untested<br>
+Heli version is partially tested<br>
 No Heli version included<br>
 A simple v1.0 included<br>
 M3 Editor file included<br>
