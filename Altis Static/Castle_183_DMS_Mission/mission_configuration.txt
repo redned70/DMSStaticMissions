@@ -1,6 +1,7 @@
 /*
 	"Castle 183" v2.1 static mission for Altis.
-	Created by [CiC]red_ned using templates by eraser1
+	Created by [CiC]red_ned using templates by eraser1 
+	18 years of CiC http://cic-gaming.co.uk
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
@@ -12,7 +13,7 @@ Note - I have tried to keep much of the new code in the sections where it was or
 **************************************************************************************************************************************************	
 >>>> This section describes the variables used inside the mission ** Don't change this line unless you know what you're doing!** and yes i had to add some original values due to now using them as full local variables.
 
-private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN"];
+private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN", "_cash"];
 
 >>>> What they all do later in the mission file
 
@@ -37,6 +38,7 @@ private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay"
 "_difficulty",					// Defines AI difficulty in easy mission diffficulty setting - an "easy" mission can have "hardcore" AI
 "_PossibleDifficulty",			// Defines list of possible mission difficulties (isnt linked to how diffficult the AI is) - you can add more to change % chance
 "_msgWIN",						// Defines mission win message - you can change to make mission win message different **Remeber there are a few versions including the pin code announce**
+"_cash"							// Defines cash prize loaded into crate.
 
 **************************************************************************************************************************************************	
 >>>> This section chooses which version of the script to run
@@ -75,19 +77,19 @@ switch (_difficultyM) do
 {
 	case "easy":
 	{
-_difficulty = "easy";									//AI difficulty
-_AICount = (15 + (round (random 5)));					//AI starting numbers
-_AIMaxReinforcements = (10 + (round (random 30)));		//AI reinforcement cap
-_AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
-_AIwave = (4 + (round (random 4)));						//Max amount of AI in reinforcement wave
-_AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
-_VehicleChance = 10;									//10% SpawnPersistentVehicle chance
-_crate_weapons0 	= (5 + (round (random 20)));		//Crate 0 weapons number
-_crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
-_crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
-_crate_weapons1 	= (4 + (round (random 2)));			//Crate 1 weapons number
-_crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
-_crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
+		_difficulty = "easy";									//AI difficulty
+		_AICount = (15 + (round (random 5)));					//AI starting numbers
+		_AIMaxReinforcements = (10 + (round (random 30)));		//AI reinforcement cap
+		_AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
+		_AIwave = (4 + (round (random 4)));						//Max amount of AI in reinforcement wave
+		_AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
+		_cash = (250 + round (random (500)));					//this gives 250 to 750 cash			
+		_crate_weapons0 	= (5 + (round (random 20)));		//Crate 0 weapons number
+		_crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
+		_crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
+		_crate_weapons1 	= (4 + (round (random 2)));			//Crate 1 weapons number
+		_crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
+		_crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
 	};
 **************************************************************************************************************************************************	
 >>>> This section reduces the amount of static guns just for "easy" mission
@@ -196,6 +198,8 @@ _crate_loot_values1 =
 	_crate_items1,			// Set in difficulty select - Items
 	_crate_backpacks1 		// Set in difficulty select - Backpacks
 ];
+// add cash to _crate0
+_crate0 setVariable ["ExileMoney", _cash,true];	
 
 **************************************************************************************************************************************************	
 >>>> Peristent vehicle section
