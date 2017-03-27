@@ -18,3 +18,7 @@ You must have DMS installed<br>
 <b>v1.0</b> is hardcore only with no vehicle.<br>
 <b>v2.1</b> is multi difficulties with chance of persistent vehicle (on some missions) and lots of editable functions.
 *******************************************************
+
+<b>Updated 27 March 2017</b><br>
+Added cash in crates<br>
+Tidied code<br>

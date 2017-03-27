@@ -1,6 +1,7 @@
 /*
 	"Lubjansk" v2.1 static mission for Namalsk.
 	Created by [CiC]red_ned using templates by eraser1
+	18 years of CiC http://cic-gaming.co.uk
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
@@ -37,6 +38,8 @@ private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay"
 "_difficulty",					// Defines AI difficulty in easy mission diffficulty setting - an "easy" mission can have "hardcore" AI
 "_PossibleDifficulty",			// Defines list of possible mission difficulties (isnt linked to how diffficult the AI is) - you can add more to change % chance
 "_msgWIN",						// Defines mission win message - you can change to make mission win message different **Remeber there are a few versions including the pin code announce**
+"_cash0", 						// Defines cash for crate0
+"_cash1", 						// Defines cash for crate1
 
 **************************************************************************************************************************************************	
 >>>> This section chooses which version of the script to run
@@ -75,76 +78,41 @@ switch (_difficultyM) do
 {
 	case "easy":
 	{
-_difficulty = "easy";									//AI difficulty
-_AICount = (15 + (round (random 5)));					//AI starting numbers
-_AIMaxReinforcements = (10 + (round (random 30)));		//AI reinforcement cap
-_AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
-_AIwave = (4 + (round (random 4)));						//Max amount of AI in reinforcement wave
-_AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
-_VehicleChance = 10;									//10% SpawnPersistentVehicle chance
-_crate_weapons0 	= (5 + (round (random 20)));		//Crate 0 weapons number
-_crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
-_crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
-_crate_weapons1 	= (4 + (round (random 2)));			//Crate 1 weapons number
-_crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
-_crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
+		_difficulty = "easy";									//AI difficulty
+		_AICount = (15 + (round (random 5)));					//AI starting numbers
+		_AIMaxReinforcements = (10 + (round (random 30)));		//AI reinforcement cap
+		_AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
+		_AIwave = (4 + (round (random 4)));						//Max amount of AI in reinforcement wave
+		_AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
+		_cash0 = (250 + round (random (500)));					//this gives 250 to 750 cash
+		_cash1 = (250 + round (random (500)));					//this gives 250 to 750 cash			
+		_crate_weapons0 	= (5 + (round (random 20)));		//Crate 0 weapons number
+		_crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
+		_crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
+		_crate_weapons1 	= (4 + (round (random 2)));			//Crate 1 weapons number
+		_crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
+		_crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
 	};
 **************************************************************************************************************************************************	
->>>> This section reduces the amount of static guns just for "easy" mission
-
-//Reduce Static guns if mission is easy
-if (_difficultyM isEqualTo "easy") then {
+>>>> Static guns
 _staticGuns =
-[
-	[
-		[6272.85,16301.2,15.8243],
-		[6129.94,16272.1,1.3512],
-		[6242.14,16211.7,0.632]
-	],
-	_group,
-	"assault",
-	_difficulty,
-	"bandit",
-	"random"
-] call DMS_fnc_SpawnAIStaticMG;
-										} else
-										{
-_staticGuns =
-[
-	[
-		_pos vectorAdd [-5,0,0],	// 5 meters West of center pos
-		_pos vectorAdd [0,-5,0],	// 5 meters South of center pos
-		[6272.85,16301.2,15.8243],
-		[6129.94,16272.1,1.3512],
-		[6242.14,16211.7,0.632]
-	],
-	_group,
-	"assault",
-	_difficulty,
-	"bandit",
-	"random"
-] call DMS_fnc_SpawnAIStaticMG;
-										};
-
->> You can remove the change by adjusting this section to just:
-
-_staticGuns =
-[
-	[
-		_pos vectorAdd [-5,0,0],	// 5 meters West of center pos
-		_pos vectorAdd [0,-5,0],	// 5 meters South of center pos
-		[6272.85,16301.2,15.8243],
-		[6129.94,16272.1,1.3512],
-		[6242.14,16211.7,0.632]
-	],
-	_group,
-	"assault",
-	_difficulty,
-	"bandit",
-	"random"
-] call DMS_fnc_SpawnAIStaticMG;
-
->> Now all mission difficulties will have the same amount of static guns										
+				[
+					[
+						_pos vectorAdd [0,-5,0],		// 5 meters South of center pos
+						[4423.37,11279.7,0.403339],
+						[4430.6,11228.4,0],
+						[4465.26,11133.4,-0.0176592],	
+						[4483.47,11285.9,0],
+						[4485.37,11263.8,0.693156],	
+						[4484.22,11221.1,0.697772],	
+						[4434.34,11208.1,-0.0666306]
+					],
+					_group,
+					"assault",
+					_difficulty,
+					"bandit",
+					"random"
+				] call DMS_fnc_SpawnAIStaticMG;									
 
 **************************************************************************************************************************************************	
 >>>> Reinforcement section
@@ -196,7 +164,9 @@ _crate_loot_values1 =
 	_crate_items1,			// Set in difficulty select - Items
 	_crate_backpacks1 		// Set in difficulty select - Backpacks
 ];
-
+// add cash to crate
+_crate0 setVariable ["ExileMoney", _cash0,true];	
+_crate1 setVariable ["ExileMoney", _cash1,true];
 **************************************************************************************************************************************************	
 >>>> Peristent vehicle section
 >> not used in this mission
