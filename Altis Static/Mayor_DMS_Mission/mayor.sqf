@@ -17,10 +17,94 @@ _pos = [22755.4,7766.04,0]; //insert the centre here
 
 if ([_pos,DMS_StaticMinPlayerDistance] call DMS_fnc_IsPlayerNearby) exitWith {"delay"};
 
+//create possible difficulty add more of one difficulty to weight it towards that
+_PossibleDifficulty		= 	[	
+								"easy",
+								"moderate",
+								"moderate",
+								"difficult",
+								"difficult",
+								"difficult",
+								"hardcore",
+								"hardcore",
+								"hardcore",
+								"hardcore"
+							];
+//choose mission difficulty and set value and is also marker colour
+_difficultyM = selectRandom _PossibleDifficulty;
 
-// Set general mission difficulty
-_difficulty = "hardcore";
-
+switch (_difficultyM) do
+{
+	case "easy":
+	{
+		_difficulty = "easy";									//AI difficulty
+		_AICount = (15 + (round (random 5)));					//AI starting numbers
+		_AIMaxReinforcements = (10 + (round (random 30)));		//AI reinforcement cap
+		_AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
+		_AIwave = (4 + (round (random 4)));						//Max amount of AI in reinforcement wave
+		_AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
+		_cash0 = (250 + round (random (500)));					//this gives 250 to 750 cash
+		_cash1 = (250 + round (random (500)));					//this gives 250 to 750 cash
+		_crate_weapons0 	= (5 + (round (random 20)));		//Crate 0 weapons number
+		_crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
+		_crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
+		_crate_weapons1 	= (4 + (round (random 2)));			//Crate 1 weapons number
+		_crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
+		_crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
+	};
+	case "moderate":
+	{
+		_difficulty = "moderate";
+		_AICount = (20 + (round (random 5)));
+		_AIMaxReinforcements = (20 + (round (random 20)));
+		_AItrigger = (10 + (round (random 10)));
+		_AIwave = (5 + (round (random 3)));
+		_AIdelay = (55 + (round (random 120)));
+		_cash0 = (500 + round (random (750)));					//this gives 500 to 1250 cash	
+		_cash1 = (500 + round (random (750)));					//this gives 500 to 1250 cash	
+		_crate_weapons0 	= (10 + (round (random 15)));
+		_crate_items0 		= (10 + (round (random 15)));
+		_crate_backpacks0 	= (3 + (round (random 1)));
+		_crate_weapons1 	= (6 + (round (random 3)));
+		_crate_items1 		= (20 + (round (random 30)));
+		_crate_backpacks1 	= (5 + (round (random 4)));
+	};
+	case "difficult":
+	{
+		_difficulty = "difficult";
+		_AICount = (20 + (round (random 7)));
+		_AIMaxReinforcements = (30 + (round (random 20)));
+		_AItrigger = (10 + (round (random 10)));
+		_AIwave = (6 + (round (random 2)));
+		_AIdelay = (55 + (round (random 120)));
+		_cash0 = (750 + round (random (1000)));					//this gives 750 to 1750 cash
+		_cash1 = (750 + round (random (1000)));					//this gives 750 to 1750 cash
+		_crate_weapons0 	= (20 + (round (random 20)));
+		_crate_items0 		= (15 + (round (random 10)));
+		_crate_backpacks0 	= (3 + (round (random 1)));
+		_crate_weapons1 	= (8 + (round (random 3)));
+		_crate_items1 		= (30 + (round (random 20)));
+		_crate_backpacks1 	= (6 + (round (random 4)));
+	};
+	//case "hardcore":
+	default
+	{
+		_difficulty = "hardcore";
+		_AICount = (20 + (round (random 10)));
+		_AIMaxReinforcements = (40 + (round (random 10)));
+		_AItrigger = (15 + (round (random 5)));
+		_AIwave = (6 + (round (random 2)));
+		_AIdelay = (55 + (round (random 120)));
+		_cash0 = (1000 + round (random (1500)));					//this gives 1000 to 2500 cash
+		_cash1 = (1000 + round (random (1500)));					//this gives 1000 to 2500 cash
+		_crate_weapons0 	= (30 + (round (random 10)));
+		_crate_items0 		= (20 + (round (random 5)));
+		_crate_backpacks0 	= (2 + (round (random 1)));
+		_crate_weapons1 	= (10 + (round (random 2)));
+		_crate_items1 		= (40 + (round (random 10)));
+		_crate_backpacks1 	= (10 + (round (random 2)));
+	};
+};
 
 // Define spawn locations for AI Soldiers. These will be used for the initial spawning of AI as well as reinforcements.
 // The center spawn location is added 3 times so at least 3 AI will spawn initially at the center location, and so that future reinforcements are more likely to spawn at the center.
@@ -102,9 +186,6 @@ _crate1 = [_crateClasses_and_Positions select 1 select 1, _crateClasses_and_Posi
 {
 	_x setVariable ["DMS_AllowSmoke", true];
 } forEach [_crate0,_crate1];
-
-
-
 
 // Define mission-spawned AI Units
 _missionAIUnits =
