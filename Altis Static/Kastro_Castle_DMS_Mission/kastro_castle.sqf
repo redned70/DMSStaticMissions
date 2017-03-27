@@ -283,7 +283,7 @@ _missionObjs =
 				];
 
 // Define Mission Start message
-__msgStart = ['#FFFF00',format["%1 Terrorists have invaded the castle gift shop",_difficultyM]];
+_msgStart = ['#FFFF00',format["%1 Terrorists have invaded the castle gift shop",_difficultyM]];
 
 // Define Mission Win message
 _msgWIN = ['#0080ff',"Convicts have successfully killed the Terrorists and stolen all the crates"];
