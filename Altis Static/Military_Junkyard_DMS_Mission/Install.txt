@@ -1,8 +1,9 @@
 *******************************************************
-	"Military Junkyard" static mission for Altis.
+	"Military Junkyard" v2.1 static mission for Altis.
 	Created by [CiC]red_ned using templates by eraser1 
 	Mapping by [CiC]red_ned and Pradatoru
-	17 years of CiC http://cic-gaming.co.uk
+	18 years of CiC http://cic-gaming.co.uk
+	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 *******************************************************
 	For Altis only.
 	Running on DMS System
@@ -28,7 +29,7 @@ No BE or InfiSTAR additions apart from what you installed to run DMS. this will 
 You can edit the mission text by changing the following in military_junkyard.sqf 
 
 // Define Mission Start message
-_msgStart = ['#FFFF00', "A large group of terrorists have invaded the military junkyard"];
+_msgStart = ['#FFFF00',format["A large group of %1 terrorists have invaded the military junkyard",_difficultyM]];
 
 // Define Mission Win message
 _msgWIN = ['#0080ff',"Convicts have successfully killed the terrorists and claimed all the crates"];
