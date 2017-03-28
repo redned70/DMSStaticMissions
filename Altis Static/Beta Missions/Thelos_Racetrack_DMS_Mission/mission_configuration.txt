@@ -1,0 +1,218 @@
+/*
+	"Thelos Racetrack" v2.1 static mission for Altis.
+	Created by [CiC]red_ned using templates by eraser1
+	Choice of prize vehicle increases persistent chance with difficulty
+	Reinforcements of AI vehicle patrols and AI foot troops
+	Diffficulty of mission not linked to difficulty of AI if you want.
+	18 years of CiC - easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
+*/
+
+How it works, and how to change things.
+Out of the box the mission should be fairly similar to original none difficulty mission versions with same install instructions.
+
+Note - I have tried to keep much of the new code in the sections where it was originally to make it easier to read and adjust, this isnt always the most convenient/quickest/smallest route but considering the amount of configuration that can be done i thought it would be easiest and simplest way.
+
+Note - I have over complicated the choice of reinforcement helicoptors and patrol vehicles on purpose to try to allow servers to chose what vehicle types could be included and from which mod.
+
+**************************************************************************************************************************************************	
+>>>> This section describes the variables used inside the mission ** Don't change this line unless you know what you're doing!** and yes i had to add some original values due to now using them as full local variables.
+
+private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_cash0", "_cash1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN", "_vehicle", "_pinCode", "_VehicleChance", "_baseObjs", "_AIPatrolSpawnLocations", "_group2", "_group3", "_veh", "_vehClass", "_vehClassP", "_Vwin", "_dropPoint", "_heliClass", "_heliClassP", "_spawnPos", "_veh_wave", "_PossibleVehicleClass", "_VehicleClass"];
+
+>>>> What they all do later in the mission file
+
+"_AICount",						// Defines starting AI count - you can change to make initial AI numbers different per mission difficulty
+"_AIdelay",						// Defines the amount of time between sensing if the AI numbers have fallen below the trigger number set in _AIwave, you can speed up missions or slow them down with this
+"_AIMaxReinforcements",			// Defines how many AI reinforcements are available to the mission - you can change per mission difficulty to lower or raise the amount of AI overall
+"_AItrigger",					// Defines how many AI trigger reinforcements - you can change per mission difficulty to lower or raise the amount of AI before reinforcements arrive
+"_AIwave",						// Defines maximum amount of AI which may be deployed at once in reinforcement trigger
+"_staticguns",					// Defines position of any static guns - used in a detect of "easy" mission to reduce amount of guns
+"_missionObjs",					// Defines what things are being spawned as part of mission and what to clean up at the end **Don't Change**
+"_crate0",						// Defines 1st crate position **Don't Change**
+"_crate1",						// Defines 2nd crate position **Don't Change**
+"_crate_loot_values0",			// Defines collection of weapons, items, backpacks in 1st crate **Don't Change**
+"_crate_loot_values1",			// Defines collection of weapons, items, backpacks in 2nd crate **Don't Change**
+"_crate_weapons0",				// Defines amount of weapons in 1st crate - you can change to adjust loot for each mission diffficulty
+"_crate_weapons1",				// Defines amount of weapons in 2nd crate - you can change to adjust loot for each mission diffficulty
+"_crate_items0",				// Defines amount of items in 1st crate - you can change to adjust loot for each mission diffficulty
+"_crate_items1",				// Defines amount of items in 2nd crate - you can change to adjust loot for each mission diffficulty
+"_crate_backpacks0",			// Defines amount of backpacks in 1st crate - you can change to adjust loot for each mission diffficulty
+"_crate_backpacks1",			// Defines amount of backpacks in 2nd crate - you can change to adjust loot for each mission diffficulty
+"_difficultyM",					// Defines mission difficulty result (also used for the mission marker) **Don't Change**
+"_difficulty",					// Defines AI difficulty in easy mission diffficulty setting - an "easy" mission can have "hardcore" AI
+"_PossibleDifficulty",			// Defines list of possible mission difficulties (isnt linked to how diffficult the AI is) - you can add more to change % chance
+"_msgWIN",						// Defines mission win message - you can change to make mission win message different **Remeber there are a few versions including the pin code announce**
+"_cash0",						// Defines Tabs for crate0
+"_cash1",						// Defines Tabs for crate1
+
+"_VehicleChance"				// Defines the %chance of persistent vehicle for prize
+"_PossibleVehicleClass", 		// Defines list of potential prize vehicles
+"_VehicleClass"					// Define which class of prize vehicle by random choice from _PossibleVehicleClass
+
+"_vehClassP",					// Defines list of possible patrol vehicle types
+"_vehClass", 					// Define AI patrol vehicle type from random choice from _vehClassP
+"_veh_wave",					// Defines amount of vehicle reinforcement waves
+
+"_spawnPos",					// Defines heli spawn position
+"_dropPoint",					// Defines heli reinforcement drop point
+"_heliClassP",					// Defines list of possible heli types
+"_heliClass",					// Define AI heli type from random choice from _heliClassP
+
+
+"_group"						// Controls the 1st group of foot AI plus the ground vehicle patrols
+"_group3"						// Controls the heli reinforcements
+
+**************************************************************************************************************************************************	
+>>>> This section chooses which version of the script to run
+//create possible difficulty add more of one difficulty to weight it towards that
+_PossibleDifficulty		= 	[	
+								"easy",
+								"moderate",
+								"difficult",
+								"hardcore"
+							];
+//choose mission difficulty and set value and is also marker colour
+_difficultyM = selectRandom _PossibleDifficulty;
+
+>> You can change the % chance of each difficulty by adding more of that one for example
+
+_PossibleDifficulty		= 	[	
+								"easy",
+								"easy",
+								"easy",
+								"easy",
+								"moderate",
+								"moderate",
+								"moderate",
+								"difficult",
+								"difficult",
+								"hardcore"
+							];
+
+>> Now instead of 25% chance of all the chances are 40% easy, 30% moderate, 20% difficult and 10% hardcore
+**************************************************************************************************************************************************	
+
+>>>> Mission difficulty settings - you can change setting per "_difficultyM" to contain different settings - used a lot of randomising here.
+>> Notice just because it is an "easy" mission doesnt mean the AI will be easy
+
+switch (_difficultyM) do
+{
+	case "easy":
+	{
+		_difficulty = "easy";									//AI difficulty
+		_AICount = (15 + (round (random 5)));					//AI starting numbers
+		_AIMaxReinforcements = (20 + (round (random 30)));		//AI reinforcement cap
+		_AItrigger = (10 + (round (random 5)));					//If AI numbers fall below this number then reinforce if any left from AIMax
+		_AIwave = (4 + (round (random 2)));						//Max amount of AI in reinforcement wave
+		_AIdelay = (55 + (round (random 120)));					//The delay between reinforcements
+		_veh_wave = (1 + (round (random 1)));					//Amount of possible vehicle reinforcement waves 
+		_VehicleChance = 25;									//25% SpawnPersistentVehicle chance
+		_crate_weapons0 	= (20 + (round (random 25)));		//Crate 0 weapons number
+		_crate_items0 		= (5 + (round (random 20)));		//Crate 0 items number
+		_crate_backpacks0 	= (3 + (round (random 1)));			//Crate 0 back packs number
+		_crate_weapons1 	= (25+ (round (random 20)));		//Crate 1 weapons number
+		_crate_items1 		= (10 + (round (random 40)));		//Crate 1 items number
+		_crate_backpacks1 	= (1 + (round (random 8)));			//Crate 1 back packs number
+		_cash0 = (1000 + round (random (1500)));				//Tabs for crate0
+		_cash1 = (1000 + round (random (5000)));				//Tabs for crate1
+	};
+**************************************************************************************************************************************************	
+>>>> Under construction
+**************************************************************************************************************************************************	
+>>>> Reinforcement section
+
+This is basically set to reinforce the vehicles up to "_veh_wave" times and the normal non-sniper AI as per the numbers in config
+
+All the locations for AI are in strings then we use ExileClient_util_array_shuffle to shuffle and randomise the lists to make sure spawns and reinforcements are as random as possible
+
+// Shuffle the list of possible AI spawn locations
+_AISoldierSpawnLocations = _AISoldierSpawnLocations call ExileClient_util_array_shuffle;
+
+// Shuffle the list of possible patrol spawn locations
+_AIPatrolSpawnLocations = _AIPatrolSpawnLocations call ExileClient_util_array_shuffle;
+
+
+
+**************************************************************************************************************************************************	
+>>>> This section just builds crate content from difficulty settings
+**************************************************************************************************************************************************	
+
+// setup crates with items from choices
+_crate_loot_values0 =
+[
+	_crate_weapons0,		// Set in difficulty select - Weapons
+	_crate_items0,			// Set in difficulty select - Items
+	_crate_backpacks0 		// Set in difficulty select - Backpacks
+];
+_crate_loot_values1 =
+[
+	_crate_weapons1,		// Set in difficulty select - Weapons
+	_crate_items1,			// Set in difficulty select - Items
+	_crate_backpacks1 		// Set in difficulty select - Backpacks
+];
+
+// add cash to crates from choices
+_crate0 setVariable ["ExileMoney", _cash0,true];
+_crate1 setVariable ["ExileMoney", _cash1,true];
+
+**************************************************************************************************************************************************	
+>>>>> This section shows you about choices of vehicles and helicoptors 
+
+This is the heli drop class list, heli needs to hold a full drop of up to 6 AI
+_heliClassP	=	[
+					"Exile_Chopper_Huey_Armed_Green",
+					"Exile_Chopper_Huey_Armed_Desert",
+					"Exile_Chopper_Huey_Desert",
+					"Exile_Chopper_Huey_Green"
+				];									//you can add helis from other mods, just remember comma every line except last
+
+This is the possible respawning patrol vehicle, remove "random" if you only want to stick to a specific list, >> none will be available as a prize <<
+				// Possible vehicle classes and chose random
+_vehClassP = 	[
+					"random",								//>>this is the DMS select from DMS_ArmedVehicles comment out if you only want your vehicle types selected from list.<<
+					"Exile_Car_Offroad_Armed_Guerilla01",
+					"Exile_Car_Offroad_Armed_Guerilla02",
+					"Exile_Car_Offroad_Armed_Guerilla03",
+					"Exile_Car_Offroad_Armed_Guerilla04",
+					"Exile_Car_Offroad_Armed_Guerilla05",
+					"Exile_Car_Offroad_Armed_Guerilla06",
+					"Exile_Car_Offroad_Armed_Guerilla07",
+					"Exile_Car_Offroad_Armed_Guerilla08",
+					"Exile_Car_Offroad_Armed_Guerilla09",
+					"Exile_Car_Offroad_Armed_Guerilla10",
+					"Exile_Car_Offroad_Armed_Guerilla11",
+					"Exile_Car_Offroad_Armed_Guerilla12"
+				];											//you can add vehicles from other mods, just remember comma every line except last
+				
+//create possible prize vehicle list (you can add any heli or land vehicle if you want but it spawns on heli pad)>> you can use your own installed mod vehicles here
+_PossibleVehicleClass 		= [	
+								"Exile_Chopper_Huey_Armed_Green",
+								"Exile_Chopper_Huey_Armed_Desert",
+								"Exile_Chopper_Huey_Desert",
+								"Exile_Chopper_Huey_Green",
+								"Exile_Chopper_Hummingbird_Civillian_Blue",
+								"Exile_Chopper_Hummingbird_Civillian_Red",
+								"Exile_Chopper_Hummingbird_Civillian_ION",
+								"Exile_Chopper_Hummingbird_Civillian_BlueLine",
+								"Exile_Chopper_Hummingbird_Civillian_Digital",
+								"Exile_Chopper_Hummingbird_Civillian_Elliptical",
+								"Exile_Chopper_Hummingbird_Civillian_Furious",
+								"Exile_Chopper_Hummingbird_Civillian_GrayWatcher",
+								"Exile_Chopper_Hummingbird_Civillian_Jeans",
+								"Exile_Chopper_Hummingbird_Civillian_Light",
+								"Exile_Chopper_Hummingbird_Civillian_Shadow",
+								"Exile_Chopper_Hummingbird_Civillian_Sheriff",
+								"Exile_Chopper_Hummingbird_Civillian_Speedy",
+								"Exile_Chopper_Hummingbird_Civillian_Sunset",
+								"Exile_Chopper_Hummingbird_Civillian_Vrana",
+								"Exile_Chopper_Hummingbird_Civillian_Wasp",
+								"Exile_Chopper_Hummingbird_Civillian_Wave"
+							];
+//choose the vehicle for prize
+_VehicleClass = selectRandom _PossibleVehicleClass;								
+											
+**************************************************************************************************************************************************												
+>>>> thats basically the whole set up which should give flexibility on % chance of mission from the main DMS config, % chance of a difficulty from _PossibleDifficulty and then all the individual settings along the way giving some random parameters for each difficulty level.
+
+Enjoy..
+
