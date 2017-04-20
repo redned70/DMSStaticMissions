@@ -263,12 +263,11 @@ if (_VehicleChance >= (random 100)) then {
 											_vehicle = ["Exile_Car_Ural_Covered_Military",[6188.366699, 16272.720703, 0.00143814]] call DMS_fnc_SpawnNonPersistentVehicle;
 											_msgWIN = ['#0080ff',"Convicts have successfully killed everyone and stolen all the crates"];
 											};
-										 };
 										 										 
 // Define mission-spawned objects and loot values with vehicle
 _missionObjs =
 				[
-					_staticGuns,			// static gun(s). Note, we don't add the base itself because it already spawns on server start.
+					[_staticGuns],			// static gun(s). Note, we don't add the base itself because it already spawns on server start.
 					[_vehicle],				// vehicle prize
 					[[_crate0,_crate_loot_values0],[_crate1,_crate_loot_values1]]
 				];	
