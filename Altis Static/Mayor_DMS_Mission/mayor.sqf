@@ -249,7 +249,7 @@ _missionObjs =
 				];
 
 // Define Mission Start message
-_msgStart = ['#FFFF00',format"The old Mayors %1 troups are trying to set up his old home",_difficultyM]];
+_msgStart = ['#FFFF00',format["The old Mayors %1 troups are trying to set up his old home",_difficultyM]];
 
 // Define Mission Win message
 _msgWIN = ['#0080ff',"Convicts have successfully killed the Mayors troups and prevented his return"];
