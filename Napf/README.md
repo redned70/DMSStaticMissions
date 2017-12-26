@@ -1,9 +1,9 @@
 # DMSStaticMissions
-Exile DMS Static Missions
+Exile DMS Napf Static Missions
 
 
 *******************************************************
-	Static missions for various maps.
+	Static missions for Napf.
 	Credits to Pradatoru for some mapping
 	Created by [CiC]red_ned using templates by eraser1 
 	18 years of CiC http://cic-gaming.co.uk
