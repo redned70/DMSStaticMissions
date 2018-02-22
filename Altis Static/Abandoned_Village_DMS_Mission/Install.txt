@@ -19,6 +19,6 @@ Installing.
 5.	Find
 	DMS_BasesToImportOnServerStart append ["saltflatsbase","slums_objects"];
 	Change to (or add extra)
-	DMS_StaticMissionTypes append ["saltflatsbase","slums_objects","a_village_buildings"];
+	DMS_BasesToImportOnServerStart append ["saltflatsbase","slums_objects","a_village_buildings"];
 6.	Repack altis_config.sqf	into PBO
 7. 	Put a3_dms.pbo into /@ExileServer/addons/ on server and start.
