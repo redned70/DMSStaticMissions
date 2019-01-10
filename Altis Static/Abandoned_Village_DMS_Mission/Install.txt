@@ -2,7 +2,7 @@
 	"Abandoned Village" v2.1 static mission for Altis.
 	Credits to Pradatoru for mapping
 	Created by [CiC]red_ned using templates by eraser1 
-	18 years of CiC http://cic-gaming.co.uk
+	19 years of CiC http://cic-gaming.co.uk
 *******************************************************
 	For Altis only.
 	Running on DMS System

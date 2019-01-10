@@ -3,7 +3,7 @@
 	Created by [CiC]red_ned using templates by eraser1
 	Hardcore mode has Exile_Car_Ural_Covered_Military with 50% its persistent
 	Credits to Pradatoru for mapping
-	18 years of CiC
+	19 years of CiC
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 

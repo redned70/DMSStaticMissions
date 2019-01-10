@@ -4,7 +4,7 @@
 	Choice of prize vehicle increases persistent chance with difficulty
 	Reinforcements of AI random vehicle patrols and AI foot troops
 	Diffficulty of mission not linked to difficulty of AI if you want.
-	18 years of CiC - easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
+	19 years of CiC - easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
 private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_cash0", "_cash1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN", "_vehicle", "_pinCode", "_VehicleChance", "_baseObjs", "_AIPatrolSpawnLocations", "_group3", "_veh", "_vehClass", "_vehClassP", "_Vwin", "_dropPoint", "_heliClass", "_heliClassP", "_spawnPos", "_veh_wave", "_PossibleVehicleClass", "_VehicleClass"];

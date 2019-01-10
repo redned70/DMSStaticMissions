@@ -4,7 +4,7 @@
 	Choice of prize vehicle increases persistent chance with difficulty
 	Reinforcements of AI vehicle patrols and AI foot troops
 	Diffficulty of mission not linked to difficulty of AI if you want.
-	18 years of CiC - easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
+	19 years of CiC - easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
 How it works, and how to change things.

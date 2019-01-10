@@ -2,7 +2,7 @@
 	"AI Island" v2.1 static mission for Altis.
 	Created by [CiC]red_ned using templates by eraser1 
 	Credits to "Kroenen" for creating the base.
-	18 years of CiC http://cic-gaming.co.uk
+	19 years of CiC http://cic-gaming.co.uk
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 

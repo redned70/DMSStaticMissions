@@ -2,7 +2,7 @@
 	"Abandoned Village" v2.1 static mission for Altis.
 	Created by [CiC]red_ned using templates by eraser1 
 	Credits to Pradatoru for mapping
-	18 years of CiC http://cic-gaming.co.uk
+	19 years of CiC http://cic-gaming.co.uk
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 private ["_AICount", "_AIMaxReinforcements", "_AItrigger", "_AIwave", "_AIdelay", "_staticguns", "_missionObjs", "_crate0", "_crate1", "_crate_loot_values0", "_crate_loot_values1", "_crate_weapons0", "_crate_weapons1", "_crate_items0", "_crate_items1", "_crate_backpacks0", "_crate_backpacks1", "_difficultyM", "_difficulty", "_PossibleDifficulty", "_msgWIN", "_vehicle", "_cash"];

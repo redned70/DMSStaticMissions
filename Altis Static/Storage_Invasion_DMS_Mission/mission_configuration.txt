@@ -3,7 +3,7 @@
 	Exile_Car_Ural_Open_Military increases persistent chance with difficulty
 	Created by [CiC]red_ned using templates by eraser1 
 	Credits to Pradatoru for mapping
-	18 years of CiC
+	19 years of CiC
 	easy/mod/difficult/hardcore - reworked by [CiC]red_ned http://cic-gaming.co.uk
 */
 
