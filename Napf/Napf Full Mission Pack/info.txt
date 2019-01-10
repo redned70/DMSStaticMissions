@@ -1,0 +1,28 @@
+11 Static DMS missions for Napf Map.
+
+Features include:
+a3_custom file loading of main mapping with full PBO and settings - allowing simple objects (better FPS) and enableSimulationGlobal for active lighting and doors etc
+Mission start mapping of blockades etc
+Fully randomised AI numbers, difficulty and reinforcements
+Fully commented missions for ease of adjustment
+Some paratroop reinforcements, support vehicles including air and land 
+Possible minefields per mission
+
+
+Slightly smaller island missions with 1 crate and less AI
+Camp Audacity Mission
+Camp Bravery Mission
+Camp Courage Mission
+Camp Fortitude Mission
+
+
+Larger castle missions with extra mapping on castles to fortify
+Froburg Castle Mission
+Homburg Castle Mission
+Muttenz Church Mission
+Napf Castle Mission
+
+Larger island missions with 2 crates
+Occupied Island Mission - with paratroopers and AI heli
+Oil Island Mission - with bridge and markers
+Stranded Bandits Mission
