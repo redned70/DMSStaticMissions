@@ -7,6 +7,7 @@ Fully randomised AI numbers, difficulty and reinforcements
 Fully commented missions for ease of adjustment
 Some paratroop reinforcements, support vehicles including air and land 
 Possible minefields per mission
+Included server-side markers and mapping for bridges which can aid in missions.
 
 
 Slightly smaller island missions with 1 crate and less AI
@@ -16,11 +17,12 @@ Camp Courage Mission
 Camp Fortitude Mission
 
 
-Larger castle missions with extra mapping on castles to fortify
+Larger castle/church missions with extra mapping on castles to fortify
 Froburg Castle Mission
 Homburg Castle Mission
-Muttenz Church Mission
 Napf Castle Mission
+Muttenz Church Mission
+
 
 Larger island missions with 2 crates
 Occupied Island Mission - with paratroopers and AI heli
